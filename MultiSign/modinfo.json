@@ -1,0 +1,13 @@
+{
+  "type": "code",
+  "modid": "multisign",
+  "name": "MultiSign",
+  "authors": [
+    "SiiMeR"
+  ],
+  "description": "Adds support for multiple signatures on books and parchments.",
+  "version": "1.0.0",
+  "dependencies": {
+    "game": ""
+  }
+}
