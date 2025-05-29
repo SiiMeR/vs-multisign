@@ -18,8 +18,6 @@ public class ItemBookPatch
         IWorldAccessor world,
         bool withDebugInfo)
     {
-        dsc.Clear();
-
         var apiField = AccessTools.Field(typeof(ItemBook), "capi");
         var api = apiField.GetValue(__instance);
 
@@ -27,6 +25,17 @@ public class ItemBookPatch
         {
             return;
         }
+
+
+        var signedByNames = inSlot.Itemstack.Attributes.GetString(MultiSignModSystem.SignedByNames, string.Empty)
+            .Split(',', StringSplitOptions.RemoveEmptyEntries);
+
+        if (signedByNames.Length == 0)
+        {
+            return;
+        }
+
+        dsc.Clear();
 
         if (withDebugInfo)
         {
@@ -53,10 +62,6 @@ public class ItemBookPatch
         {
             return;
         }
-
-        var signedByNames = inSlot.Itemstack.Attributes.GetString(MultiSignModSystem.SignedByNames, string.Empty)
-            .Split(',', StringSplitOptions.RemoveEmptyEntries);
-
 
         dsc.AppendLine(Lang.Get("Signed by:\n{0}", string.Join("\n", signedByNames)));
     }

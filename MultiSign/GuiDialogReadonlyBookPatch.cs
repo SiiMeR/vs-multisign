@@ -38,7 +38,10 @@ public class GuiDialogReadonlyBookPatch
             __instance.SingleComposer.Composed = false;
             __instance.SingleComposer.AddSmallButton(Lang.Get("editablebook-sign"),
                 () => OnButtonSign(__instance, capi),
-                signButtonBounds).ReCompose();
+                signButtonBounds, EnumButtonStyle.Normal, "signbook").ReCompose();
+
+            var hasInkAndQuill = ItemBook.isWritingTool(capi.World.Player.Entity.LeftHandItemSlot);
+            __instance.SingleComposer.GetButton("signbook").Enabled = hasInkAndQuill;
         }
     }
 
